@@ -20,6 +20,10 @@ data class Gamer(var name: String, var email: String) {
         this.createUserId()
     }
 
+    init {
+        this.email = mailValidator()
+    }
+
     override fun toString(): String {
         return "Gamer(name='$name', email='$email', birthDate=$birthDate, user=$user, userId=$userId)"
     }
@@ -31,5 +35,13 @@ data class Gamer(var name: String, var email: String) {
         this.userId = "$user#$tag"
     }
 
+    fun mailValidator(): String {
+        val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
+        if(regex.matches(email)) {
+            return email
+        } else {
+            throw IllegalArgumentException("Email inválido")
+        }
+    }
 }
 
