@@ -1,3 +1,5 @@
+package br.com.org.gameslist.model
+
 data class Game(val title: String, val cover: String) {
     var description: String? = null
 
