@@ -1,4 +1,4 @@
-class Game(val title: String, val cover: String) {
+data class Game(val title: String, val cover: String) {
     val description = ""
 
     override fun toString(): String {
