@@ -13,7 +13,7 @@ import java.net.http.HttpResponse
 
 class GameApi {
 
-    fun getApiData(address: String): String? {
+    private fun getApiData(address: String): String? {
         val client: HttpClient = HttpClient.newHttpClient();
         val request: HttpRequest = HttpRequest.newBuilder()
             .uri(URI.create(address))
