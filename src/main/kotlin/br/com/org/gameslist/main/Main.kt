@@ -41,7 +41,7 @@ fun main() {
                 myGame?.description = myGame?.title
             }
 
-            player.gamesSearched.add(myGame)
+            player.searchedGames.add(myGame)
         }
 
         println("Deseja buscar um novo jogo? S/N")
@@ -49,18 +49,18 @@ fun main() {
 
     } while (resp.equals("s", true))
 
-    print(player.gamesSearched)
+    print(player.searchedGames)
 
     println("\nJogos por titulo")
-    player.gamesSearched.sortBy {
+    player.searchedGames.sortBy {
         it?.title
     }
 
-    player.gamesSearched.forEach {
+    player.searchedGames.forEach {
         println("Titulo: " + it?.title)
     }
 
-    val filteredGames = player.gamesSearched.filter {
+    val filteredGames = player.searchedGames.filter {
         it?.title?.contains("batman", true) ?: false
     }
 
