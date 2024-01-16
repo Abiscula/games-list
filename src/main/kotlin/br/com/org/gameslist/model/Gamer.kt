@@ -1,5 +1,6 @@
 package br.com.org.gameslist.model
 
+import java.util.*
 import kotlin.random.Random
 
 data class Gamer(var name: String, var email: String) {
@@ -13,6 +14,8 @@ data class Gamer(var name: String, var email: String) {
         }
     var userId: String? = null
         private set
+
+    val gamesSearched = mutableListOf<Game?>()
 
     constructor(name: String, email: String, birthDate: String, user: String): this(name, email) {
         this.birthDate = birthDate
@@ -48,6 +51,28 @@ data class Gamer(var name: String, var email: String) {
             return this.email
         } else {
             throw IllegalArgumentException("Email inválido")
+        }
+    }
+
+    companion object {
+        fun createGamer(read: Scanner): Gamer {
+            println("Boas vindas. Digite seu nome:")
+            val name = read.nextLine()
+            println("Informe seu e-mail:")
+            val email = read.nextLine()
+            println("Deseja completar seu cadastro com usuário e data de nascimento? (S/N)")
+            val option = read.nextLine()
+
+            if(option.equals("s", true)) {
+                println("Informe sua data de nascimento (DD/MM/AAAA):")
+                val birthDate = read.nextLine()
+                println("Informe seu nome de usuário:")
+                val user = read.nextLine()
+
+                return Gamer(name, email, birthDate, user)
+            } else {
+                return Gamer(name, email)
+            }
         }
     }
 }
