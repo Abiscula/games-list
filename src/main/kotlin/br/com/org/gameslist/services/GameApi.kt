@@ -13,9 +13,7 @@ import java.net.http.HttpResponse
 
 class GameApi {
 
-    fun gameFind(id: String): InfoGame {
-        val address = "https://www.cheapshark.com/api/1.0/games?id=$id"
-
+    fun getApiData(address: String): String? {
         val client: HttpClient = HttpClient.newHttpClient();
         val request: HttpRequest = HttpRequest.newBuilder()
             .uri(URI.create(address))
@@ -24,9 +22,15 @@ class GameApi {
         val response = client
             .send(request, HttpResponse.BodyHandlers.ofString())
 
-        val json = response.body()
+        return response.body()
+    }
 
+
+    fun gameFind(id: String): InfoGame {
+        val address = "https://www.cheapshark.com/api/1.0/games?id=$id"
+        val json = getApiData(address)
         val gson = Gson()
+
         val myInfoGame = gson.fromJson(json, InfoGame::class.java)
 
         return myInfoGame
@@ -34,18 +38,9 @@ class GameApi {
 
     fun gamersFind(): List<Gamer> {
         val address = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
-
-        val client: HttpClient = HttpClient.newHttpClient();
-        val request: HttpRequest = HttpRequest.newBuilder()
-            .uri(URI.create(address))
-            .build()
-
-        val response = client
-            .send(request, HttpResponse.BodyHandlers.ofString())
-
-        val json = response.body()
-
+        val json = getApiData(address)
         val gson = Gson()
+
         val gamerType = object : TypeToken<List<InfoGamerJson>>() {}.type
         val gamerList: List<InfoGamerJson> = gson.fromJson(json, gamerType)
 
