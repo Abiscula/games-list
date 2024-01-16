@@ -15,7 +15,8 @@ data class Player(var name: String, var email: String) {
     var userId: String? = null
         private set
 
-    val gamesSearched = mutableListOf<Game?>()
+    val searchedGames = mutableListOf<Game?>()
+    val rentedGames = mutableListOf<Rent>()
 
     constructor(name: String, email: String, birthDate: String, user: String): this(name, email) {
         this.birthDate = birthDate
@@ -55,7 +56,9 @@ data class Player(var name: String, var email: String) {
     }
 
     fun gameRent(game: Game, period: RentPeriod): Rent {
-        return Rent(this, game, period)
+        val rent = Rent(this, game, period)
+        rentedGames.add(rent)
+        return rent
     }
 
     companion object {
