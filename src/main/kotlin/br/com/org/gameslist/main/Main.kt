@@ -2,6 +2,7 @@ package br.com.org.gameslist.main
 import br.com.org.gameslist.model.Game
 import br.com.org.gameslist.model.Gamer
 import br.com.org.gameslist.services.GameApi
+import getAge
 import java.util.*
 
 fun main() {
@@ -10,6 +11,7 @@ fun main() {
     val gamer = Gamer.createGamer(read)
     println("Cadastro concluído")
     println(gamer)
+    println("Idade do gamer " + gamer.birthDate?.getAge())
 
     do {
         println("Digite um codigo de jogo para buscar")
@@ -48,4 +50,19 @@ fun main() {
     } while (resp.equals("s", true))
 
     print(gamer.gamesSearched)
+
+    println("\nJogos por titulo")
+    gamer.gamesSearched.sortBy {
+        it?.title
+    }
+
+    gamer.gamesSearched.forEach {
+        println("Titulo: " + it?.title)
+    }
+
+    val filteredGames = gamer.gamesSearched.filter {
+        it?.title?.contains("batman", true) ?: false
+    }
+
+    println("\nJogos filtrados" + filteredGames)
 }
