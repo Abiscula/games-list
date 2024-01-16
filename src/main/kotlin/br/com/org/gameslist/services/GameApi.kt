@@ -1,9 +1,8 @@
 package br.com.org.gameslist.services
 
-import br.com.org.gameslist.model.Gamer
-import br.com.org.gameslist.model.InfoGame
-import br.com.org.gameslist.model.InfoGamerJson
-import br.com.org.gameslist.utils.gamerCreate
+import br.com.org.gameslist.model.*
+import br.com.org.gameslist.utils.gameCreate
+import br.com.org.gameslist.utils.playerCreate
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.net.URI
@@ -36,17 +35,30 @@ class GameApi {
         return myInfoGame
     }
 
-    fun gamersFind(): List<Gamer> {
+    fun playersFindJson(): List<Player> {
         val address = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
         val json = getApiData(address)
         val gson = Gson()
 
-        val gamerType = object : TypeToken<List<InfoGamerJson>>() {}.type
-        val gamerList: List<InfoGamerJson> = gson.fromJson(json, gamerType)
+        val playerType = object : TypeToken<List<InfoPlayerJson>>() {}.type
+        val playerList: List<InfoPlayerJson> = gson.fromJson(json, playerType)
 
-        val convertGamerList = gamerList.map { infoGamerJson -> infoGamerJson.gamerCreate() }
+        val convertPlayerList = playerList.map { playerJson -> playerJson.playerCreate() }
 
-        return convertGamerList
+        return convertPlayerList
+    }
+
+    fun gamesFindJson(): List<Game> {
+        val address = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/jogos.json"
+        val json = getApiData(address)
+        val gson = Gson()
+
+        val gameType = object : TypeToken<List<InfoGameJson>>() {}.type
+        val gameList: List<InfoGameJson> = gson.fromJson(json, gameType)
+
+        val convertGameList = gameList.map { gameJson -> gameJson.gameCreate() }
+
+        return convertGameList
     }
 
 }
