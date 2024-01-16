@@ -61,6 +61,12 @@ data class Player(var name: String, var email: String) {
         return rent
     }
 
+    fun monthGame(month: Int): List<String> {
+        return rentedGames
+            .filter { rent -> rent.period.initialDate.monthValue == month }
+            .map { rent -> rent.game.title }
+    }
+
     companion object {
         fun createPlayer(read: Scanner): Player {
             println("Boas vindas. Digite seu nome:")
