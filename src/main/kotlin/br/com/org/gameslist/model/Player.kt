@@ -54,8 +54,8 @@ data class Player(var name: String, var email: String) {
         }
     }
 
-    fun gameRent(game: Game): Rent {
-        return Rent(this, game)
+    fun gameRent(game: Game, period: RentPeriod): Rent {
+        return Rent(this, game, period)
     }
 
     companion object {
