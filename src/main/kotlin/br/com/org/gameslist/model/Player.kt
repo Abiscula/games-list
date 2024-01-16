@@ -3,7 +3,7 @@ package br.com.org.gameslist.model
 import java.util.*
 import kotlin.random.Random
 
-data class Gamer(var name: String, var email: String) {
+data class Player(var name: String, var email: String) {
     var birthDate: String? = null
     var user: String? = null
         set(value) {
@@ -54,8 +54,12 @@ data class Gamer(var name: String, var email: String) {
         }
     }
 
+    fun gameRent(game: Game): Rent {
+        return Rent(this, game)
+    }
+
     companion object {
-        fun createGamer(read: Scanner): Gamer {
+        fun createPlayer(read: Scanner): Player {
             println("Boas vindas. Digite seu nome:")
             val name = read.nextLine()
             println("Informe seu e-mail:")
@@ -69,9 +73,9 @@ data class Gamer(var name: String, var email: String) {
                 println("Informe seu nome de usuário:")
                 val user = read.nextLine()
 
-                return Gamer(name, email, birthDate, user)
+                return Player(name, email, birthDate, user)
             } else {
-                return Gamer(name, email)
+                return Player(name, email)
             }
         }
     }
