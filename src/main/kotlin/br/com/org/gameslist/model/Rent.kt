@@ -7,6 +7,6 @@ data class Rent(val player: Player,
     val rentValue: Double = player.plan.getRentValue(this)
 
     override fun toString(): String {
-        return "Aluguel do ${game.title} por ${player.name} pelo valor de R$ $rentValue"
+        return "Aluguel do ${game.title} por ${player.name} pelo valor de R$ ${String.format("%.2f", rentValue)}"
     }
 }

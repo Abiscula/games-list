@@ -23,9 +23,9 @@ data class Game(@Expose val title: String, @Expose val cover: String): Recommend
         return "Meu jogo: \n" +
                 "Título: $title \n" +
                 "Capa: $cover \n" +
-                "Preço: $price \n" +
+                "Preço: ${String.format("%.2f", price)}\n" +
                 "Descrição: $description \n" +
-                "Reputação: $avg \n"
+                "Reputação: ${String.format("%.2f", avg)} \n"
     }
 
 }

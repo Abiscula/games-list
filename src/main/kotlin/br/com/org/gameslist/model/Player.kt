@@ -51,7 +51,7 @@ data class Player(var name: String, var email: String): Recommendable {
                 "Data Nascimento: $birthDate \n" +
                 "Usuario: $user \n" +
                 "ID usuario: $userId \n" +
-                "Reputação: $avg \n"
+                "Reputação: ${String.format("%.2f", avg)} \n"
     }
 
     fun createUserId() {
