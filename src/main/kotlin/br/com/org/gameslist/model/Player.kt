@@ -3,7 +3,7 @@ package br.com.org.gameslist.model
 import java.util.*
 import kotlin.random.Random
 
-data class Player(var name: String, var email: String) {
+data class Player(var name: String, var email: String): Recommendable {
     var birthDate: String? = null
     var user: String? = null
         set(value) {
@@ -18,6 +18,11 @@ data class Player(var name: String, var email: String) {
     var plan: Plan = SeparatePlan("BRONZE")
     val searchedGames = mutableListOf<Game?>()
     val rentedGames = mutableListOf<Rent>()
+    private val notesList = mutableListOf<Int>()
+    override val avg: Double
+        get() = notesList.average()
+
+    val recommendedGamesList = mutableListOf<Game>()
 
     constructor(name: String, email: String, birthDate: String, user: String): this(name, email) {
         this.birthDate = birthDate
@@ -30,8 +35,23 @@ data class Player(var name: String, var email: String) {
         this.email = this.mailValidator()
     }
 
+    override fun recommend(note: Int) {
+        notesList.add(note)
+    }
+
+    fun recommendGame(game: Game, note: Int) {
+        game.recommend(note)
+        recommendedGamesList.add(game)
+    }
+
     override fun toString(): String {
-        return "Gamer(name='$name', email='$email', birthDate=$birthDate, user=$user, userId=$userId)"
+        return "Gamer: \n" +
+                "Nome: $name, \n" +
+                "Email: $email \n" +
+                "Data Nascimento: $birthDate \n" +
+                "Usuario: $user \n" +
+                "ID usuario: $userId \n" +
+                "Reputação: $avg \n"
     }
 
     fun createUserId() {
