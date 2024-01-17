@@ -1,6 +1,8 @@
 package br.com.org.gameslist.model
 
-data class Game(val title: String, val cover: String): Recommendable {
+import com.google.gson.annotations.Expose
+
+data class Game(@Expose val title: String, @Expose val cover: String): Recommendable {
     var description: String? = null
     var price: Double = 0.0
     private val notesList = mutableListOf<Int>()
