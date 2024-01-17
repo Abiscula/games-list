@@ -1,16 +1,17 @@
 package br.com.org.gameslist.model
 
 import com.google.gson.annotations.Expose
+import java.math.BigDecimal
 
 data class Game(@Expose val title: String, @Expose val cover: String): Recommendable {
     var description: String? = null
-    var price: Double = 0.0
+    var price: BigDecimal = BigDecimal(0.0)
     private val notesList = mutableListOf<Int>()
     override val avg: Double
         get() = notesList.average()
 
 
-    constructor(title: String, cover: String, description: String, price: Double): this(title, cover) {
+    constructor(title: String, cover: String, description: String, price: BigDecimal): this(title, cover) {
         this.description = description
         this.price = price
     }
