@@ -1,4 +1,4 @@
-package br.com.org.gameslist.data.Game
+package br.com.org.gameslist.data.game
 
 import br.com.org.gameslist.model.Game
 import javax.persistence.EntityManager

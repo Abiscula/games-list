@@ -1,7 +1,7 @@
 package br.com.org.gameslist.main
 
 import br.com.org.gameslist.data.Database
-import br.com.org.gameslist.data.Game.GamesDAO
+import br.com.org.gameslist.data.game.GamesDAO
 import br.com.org.gameslist.model.Game
 import java.math.BigDecimal
 

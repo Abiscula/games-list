@@ -1,4 +1,4 @@
-package br.com.org.gameslist.data.Player
+package br.com.org.gameslist.data.player
 
 import br.com.org.gameslist.model.Player
 import javax.persistence.EntityManager
@@ -6,7 +6,7 @@ import javax.persistence.EntityManager
 class PlayerDAO(val manager: EntityManager) {
 
     fun getPlayer(): List<Player> {
-        val query = manager.createQuery("From PlayerEntity", PlayerEntity::class.java)
+        val query = manager.createQuery("FROM PlayerEntity", PlayerEntity::class.java)
         return query.resultList.map { entity -> Player(entity.name, entity.email, entity.birthDate,
             entity.user, entity.id) }
     }
