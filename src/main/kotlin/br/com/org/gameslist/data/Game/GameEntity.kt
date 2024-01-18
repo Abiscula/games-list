@@ -1,4 +1,4 @@
-package br.com.org.gameslist.data
+package br.com.org.gameslist.data.Game
 
 import java.math.BigDecimal
 import javax.persistence.*
