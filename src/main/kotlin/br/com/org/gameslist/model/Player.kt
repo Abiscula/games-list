@@ -23,11 +23,13 @@ data class Player(var name: String, var email: String): Recommendable {
         get() = notesList.average()
 
     val recommendedGamesList = mutableListOf<Game>()
+    var id = 0
 
-    constructor(name: String, email: String, birthDate: String, user: String): this(name, email) {
+    constructor(name: String, email: String, birthDate: String, user: String, id: Int = 0): this(name, email) {
         this.birthDate = birthDate
         this.user = user
         this.createUserId()
+        this.id = id
     }
 
     init {
@@ -51,7 +53,8 @@ data class Player(var name: String, var email: String): Recommendable {
                 "Data Nascimento: $birthDate \n" +
                 "Usuario: $user \n" +
                 "ID usuario: $userId \n" +
-                "Reputação: ${String.format("%.2f", avg)} \n"
+                "Reputação: ${String.format("%.2f", avg)} \n" +
+                "Id: $id \n"
     }
 
     fun createUserId() {

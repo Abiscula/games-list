@@ -3,10 +3,11 @@ package br.com.org.gameslist.model
 import java.math.BigDecimal
 
 class SignaturePlan(type: String,
+                    id: Int = 0,
                     val monthlyPayment: Double,
                     val includedGames: Int,
                     val reputationDiscount: Double
-): Plan(type) {
+): Plan(type, id) {
 
     override fun getRentValue(rent: Rent): BigDecimal {
         val totalMonthGames = rent.player.monthGame(rent.period.initialDate.monthValue).size+1
@@ -20,5 +21,14 @@ class SignaturePlan(type: String,
             }
             originalValue
         }
+    }
+
+    override fun toString(): String {
+        return "Plano Assinatura\n" +
+                "Tipo: $type \n" +
+                "Id: $id \n" +
+                "Mensalidade: $monthlyPayment \n" +
+                "Jogos Incluidos: $includedGames \n" +
+                "Percentual Desconto Reputacao: $reputationDiscount \n"
     }
 }

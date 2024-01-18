@@ -7,13 +7,16 @@ data class Game(@Expose val title: String, @Expose val cover: String): Recommend
     var description: String? = null
     var price: BigDecimal = BigDecimal(0.0)
     private val notesList = mutableListOf<Int>()
+    var id = 0
+
     override val avg: Double
         get() = notesList.average()
 
 
-    constructor(title: String, cover: String, description: String, price: BigDecimal): this(title, cover) {
+    constructor(title: String, cover: String, description: String, price: BigDecimal, id: Int = 0): this(title, cover) {
         this.description = description
         this.price = price
+        this.id = id
     }
 
     override fun recommend(note: Int) {
@@ -26,7 +29,8 @@ data class Game(@Expose val title: String, @Expose val cover: String): Recommend
                 "Capa: $cover \n" +
                 "Preço: ${String.format("%.2f", price)}\n" +
                 "Descrição: $description \n" +
-                "Reputação: ${String.format("%.2f", avg)} \n"
+                "Reputação: ${String.format("%.2f", avg)} \n" +
+                "Id: $id \n"
     }
 
 }
