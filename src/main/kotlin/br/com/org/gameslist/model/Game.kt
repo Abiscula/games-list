@@ -13,7 +13,7 @@ data class Game(@Expose val title: String, @Expose val cover: String): Recommend
         get() = notesList.average()
 
 
-    constructor(title: String, cover: String, price: BigDecimal, description: String, id: Int = 0): this(title, cover) {
+    constructor(title: String, cover: String, price: BigDecimal, description: String?, id: Int = 0): this(title, cover) {
         this.price = price
         this.description = description
         this.id = id
