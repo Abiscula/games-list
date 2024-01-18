@@ -1,8 +1,8 @@
 package br.com.org.gameslist.data
 
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
+import javax.persistence.EntityManager
+import javax.persistence.EntityManagerFactory
+import javax.persistence.Persistence
 
 /*
 * O object é utilizado para criar objetos singleton.
@@ -10,13 +10,10 @@ import java.sql.SQLException
 * criada durante o ciclo de vida do programa.
 */
 object Database {
-    fun getConection(): Connection? {
-        return try {
-            DriverManager.getConnection("jdbc:mysql://localhost:3306/gameslistdb", "root", "root")
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            null
-        }
+
+    fun getEntityManager(): EntityManager {
+        val factory: EntityManagerFactory = Persistence.createEntityManagerFactory("gameslistdb")
+        return factory.createEntityManager()
     }
 
 }
