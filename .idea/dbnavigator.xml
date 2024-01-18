@@ -27,10 +27,7 @@ from
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="ee22f484-c224-4545-892e-4661b50d2202" object-ref="schemas/gameslistdb/tables/jogos" />
-      <object connection-id="ee22f484-c224-4545-892e-4661b50d2202" object-ref="consoles/Connection" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="ee22f484-c224-4545-892e-4661b50d2202" />

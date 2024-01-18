@@ -26,7 +26,6 @@ fun main() {
     val period3 = RentPeriod(LocalDate.now(), LocalDate.now().plusDays(10))
 
     val playerCamila = playerList.get(5)
-    playerCamila.plan = SignaturePlan("SILVER", 9.90, 3, 0.15)
     playerCamila.gameRent(gameResidentVillage, period1)
     playerCamila.gameRent(gameSpider, period2)
     playerCamila.gameRent(gameTLOU, period3)
