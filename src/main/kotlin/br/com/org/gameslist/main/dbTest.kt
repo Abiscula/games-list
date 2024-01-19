@@ -13,10 +13,23 @@ fun main() {
     val manager = Database.getEntityManager()
     val gameDAO = GamesDAO(manager)
 
-    gameDAO.addGame(game2)
+    gameDAO.add(game2)
 
-    val gamesList: List<Game> = gameDAO.getGames()
+    val specificGame = gameDAO.recoverById(4)
+    println(specificGame)
+
+    gameDAO.delete(4)
+
+    val gamesList: List<Game> = gameDAO.getList()
     println(gamesList)
+
+//    val player = Player("Victor", "victorabiscula@live.com", "25/02/1995", "Abiscula")
+//    val playerDAO = PlayerDAO(manager)
+//
+//    playerDAO.add(player)
+//
+//    val playerList = playerDAO.getList()
+//    println(playerList)
 
     manager.close()
 }
