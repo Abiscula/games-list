@@ -14,7 +14,7 @@ data class Player(var name: String, var email: String): Recommendable {
         }
     var userId: String? = null
         private set
-
+    var id = 0
     var plan: Plan = SeparatePlan("BRONZE")
     val searchedGames = mutableListOf<Game?>()
     val rentedGames = mutableListOf<Rent>()
@@ -23,17 +23,16 @@ data class Player(var name: String, var email: String): Recommendable {
         get() = notesList.average()
 
     val recommendedGamesList = mutableListOf<Game>()
-    var id = 0
 
     constructor(name: String, email: String, birthDate: String?, user: String?, id: Int = 0): this(name, email) {
         this.birthDate = birthDate
         this.user = user
-        this.createUserId()
         this.id = id
+        this.createUserId()
     }
 
     init {
-        this.userValidator()
+        this.nameValidator()
         this.email = this.mailValidator()
     }
 
@@ -64,7 +63,7 @@ data class Player(var name: String, var email: String): Recommendable {
         this.userId = "$user#$tag"
     }
 
-    fun userValidator() {
+    fun nameValidator() {
         if(this.name.isNullOrBlank()) {
             throw IllegalArgumentException("Nome está em branco")
         }

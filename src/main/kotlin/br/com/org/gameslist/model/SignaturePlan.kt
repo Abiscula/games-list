@@ -3,10 +3,10 @@ package br.com.org.gameslist.model
 import java.math.BigDecimal
 
 class SignaturePlan(type: String,
-                    id: Int = 0,
                     val monthlyPayment: Double,
                     val includedGames: Int,
-                    val reputationDiscount: Double
+                    val reputationDiscount: Double,
+                    id: Int = 0
 ): Plan(type, id) {
 
     override fun getRentValue(rent: Rent): BigDecimal {

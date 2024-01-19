@@ -1,5 +1,7 @@
 package br.com.org.gameslist.data.player
 
+import br.com.org.gameslist.data.plan.PlanEntity
+import br.com.org.gameslist.data.plan.SeparetedPlanEntity
 import javax.persistence.*
 
 @Entity
@@ -11,4 +13,6 @@ class PlayerEntity(
     val user: String? = null,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0) {}
+    val id: Int = 0,
+    @ManyToOne
+    val plan: PlanEntity = SeparetedPlanEntity()) {}
