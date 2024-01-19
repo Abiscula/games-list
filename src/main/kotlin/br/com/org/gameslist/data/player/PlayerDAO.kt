@@ -4,19 +4,14 @@ import br.com.org.gameslist.data.DAO
 import br.com.org.gameslist.model.Player
 import javax.persistence.EntityManager
 
-class PlayerDAO(private val manager: EntityManager): DAO<Player>() {
-
-    override fun getList(): List<Player> {
-        val query = manager.createQuery("FROM PlayerEntity", PlayerEntity::class.java)
-        return query.resultList.map { entity -> Player(entity.name, entity.email, entity.birthDate,
-            entity.user, entity.id) }
+class PlayerDAO(manager: EntityManager): DAO<Player, PlayerEntity>(manager, PlayerEntity::class.java) {
+    override fun toEntity(obj: Player): PlayerEntity {
+        return PlayerEntity(obj.name, obj.email, obj.birthDate, obj.user)
     }
 
-    override fun add(obj: Player) {
-        val entity = PlayerEntity(obj.name, obj.email, obj.birthDate, obj.user)
-        manager.transaction.begin()
-        manager.persist(entity)
-        manager.transaction.commit()
+    override fun toModel(entity: PlayerEntity): Player {
+        return Player(entity.name, entity.email, entity.birthDate, entity.user, entity.id)
     }
+
 
 }
